@@ -5933,7 +5933,8 @@ void term_mouse(Terminal *term, Mouse_Button braw, Mouse_Button bcooked,
 		term->mouse_is_down = 0;
 		break;
 	      case MA_CLICK:
-		if (term->mouse_is_down == braw)
+		// HACK https://github.com/atsepkov/putty-X/commit/bbcedf5a85ca1ccaa27005e7f7ebeb4c8a783b88
+		if (term->mouse_is_down == braw && braw != MBT_WHEEL_UP && braw != MBT_WHEEL_DOWN)
 		    return;
 		term->mouse_is_down = braw;
 		break;
